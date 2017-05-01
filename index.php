@@ -6,5 +6,6 @@
  * Time: 08:57
  */
 include "config/config.php";
+include "config/dbConnect.php";
 include "view/adminDashView.php";
 ?>
