@@ -5,8 +5,11 @@
  * Date: 01/05/2017
  * Time: 20:41
  */
-function enrollStudentCtl(){
-    enrollStudentMdl();
-    return null;
+require_once  __DIR__."/../config/config.php";
+//$pdo = new PDO($dsn, $db_user_name, $db_user_password, $opt);
+include __DIR__."/../model/adminDashMdl.php";
+function enrollStudentsCtl($choice =null){
+    $result=enrollStudentsMdl ($choice);
+    return $result;
 }
 ?>

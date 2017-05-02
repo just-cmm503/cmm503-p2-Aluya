@@ -30,6 +30,7 @@
 
 <main>
     <?php
+    include __DIR__."/../controller/adminDashCtl.php";
     if($_POST){
         try{
         switch ($_POST["submitButton"]) {
@@ -56,7 +57,37 @@
         print "hello";
     }
     function viewFunctionTwo(){ //viewEnrollStudents
-        $myData=enrollStudentCtl();
+        $myDataHead=enrollStudentsCtl(0);
+        $myData=enrollStudentsCtl(1);
+        $nxtRow="";
+        $thisRow="";
+        print "
+            <div class='container' id='top_row' style='height: 20%; border: black'>
+                <div class='row'>";
+                    //$myDataHead=json_decode($myDataHead);
+                    foreach ($myDataHead as $row){
+                        //foreach ($row as $col){
+                            $nxtRow=$nxtRow." <div class='col-sm-2'> <input type='text' name='$row[0]'> </div> \n\r ";
+                            $thisRow=$thisRow."<div class ='col-sm-2'> $row[0] </div> ";
+                        //}
+                    }
+        print "
+                    $thisRow
+                </div>
+                <div class='row'> $nxtRow </div>
+            </div>
+        
+        ";
+         if($myData){
+             foreach ($myData as $row){
+                 foreach ($row as $col){
+                     print " $col ";
+                 }
+             }
+             for ($i=0;$i<$myDataHead->count;$i++){
+                 print "<div class='col-sm-2'> <input type='text' name='nn'> </div>";
+             }
+         }
     }
     function viewFunctionThree(){ //viewViewStudents
         print "students";
