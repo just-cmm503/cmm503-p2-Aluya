@@ -1,0 +1,14 @@
+CREATE VIEW studentsView as SELECT `users`.*, `students`.`major`, `students`.`minor`, `students`.`dob` FROM `users` LEFT JOIN `students` ON `students`.`id` = `users`.`ID` where `users`.`u_type` = 2
+
+
+CREATE VIEW administratorsView AS
+SELECT `users`.*, `administrators`.`mobile`
+FROM `users`
+    LEFT JOIN `administrators` ON `administrators`.`ID` = `users`.`ID` where `users`.`u_type` = 1;
+
+
+
+CREATE view umazeView AS
+SELECT `users`.`ID`, `maze`.`u_name`, `maze`.`p_word`
+FROM `users`
+    LEFT JOIN `maze` ON `maze`.`id` = `users`.`ID`

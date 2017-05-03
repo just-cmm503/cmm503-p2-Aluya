@@ -11,11 +11,11 @@ function enrollStudentsMdl($choice=null){
     $enrolledStudents=null;
     switch ($choice) {
         case 0:
-            $query = "describe students";
+            $query = array("describe", "studentsView");
             $enrolledStudents=getRecords(0, $query);
             break;
         case 1:
-            $query = "select * from students";
+            $query = array("select", "*", "studentsView");
             $enrolledStudents = getRecords(0, $query);
             break;
     }
@@ -24,8 +24,16 @@ function enrollStudentsMdl($choice=null){
 
 function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null, $value4=null, $value5=null){
     //require_once __DIR__."/../config/config.php";
+    switch ($query[0]){
+        case "describe":
+            $nQuery=$query[0]." ".$query[1];
+            break;
+        case "select":
+            $nQuery=$query[0]." ".$query[1]." from ".$query[2];
+            break;
+    }
     include __DIR__."/../config/dbConnect.php";
-    $stmt =$pdo->prepare($query);
+    $stmt =$pdo->prepare($nQuery);
     switch ($argNum){
         case 0:
             $stmt->execute();
@@ -50,4 +58,47 @@ function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null,
     return $stmt->fetchAll();
 }
 
+function setRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null, $value4=null, $value5=null, $value6, $value7){
+    //require_once __DIR__."/../config/config.php";
+    switch ($query[0]){
+        case "update":
+            $nQuery=$query[0]." table ".$query[1]." set ".$query[2];
+        case "insert":
+            $nQuery=$query[0]." into ".$query[1]." ".$query[2]." ".$query[3];
+    }
+    include __DIR__."/../config/dbConnect.php";
+    $stmt =$pdo->prepare($nQuery);
+    try {
+        switch ($argNum){
+       
+        case 0:
+            $stmt->execute();
+            break;
+        case 1:
+            $stmt->execute([$value1]);
+            break;
+        case 2:
+            $stmt->execute([$value1, $value2]);
+            break;
+        case 3:
+            $stmt->execute([$value1, $value2, $value3]);
+            break;
+        case 4:
+            $stmt->execute([$value1, $value2, $value3, $value4]);
+            break;
+        case 5:
+            $stmt->execute([$value1, $value2, $value3, $value4, $value5]);
+            break;
+        case 6:
+            $stmt->execute([$value1, $value2, $value3, $value4, $value5, $value6]);
+            break;
+        case 7:
+            $stmt->execute([$value1, $value2, $value3, $value4, $value5, $value6, $value7]);
+            break;
+    }
+    }catch(PDOException $e){
+        return $e->getMessage();
+    }
+    
+}
 ?>
