@@ -58,7 +58,7 @@ function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null,
     return $stmt->fetchAll();
 }
 
-function setRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null, $value4=null, $value5=null, $value6, $value7){
+function setRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null, $value4=null, $value5=null, $value6=null, $value7=null){
     //require_once __DIR__."/../config/config.php";
     switch ($query[0]){
         case "update":

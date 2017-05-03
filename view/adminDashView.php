@@ -101,7 +101,10 @@ function viewFunctionFive(){ //viewGroupStudents
 }
 
 function addRecords(){
-    $query=array("insert","studentsView","(Name, surname, email, u_type, major, minor, dob)","'".sanitize_input($_POST['Name'])."''" .sanitize_input($_POST['surname'])."''" .sanitize_input($_POST['email'])."''" .sanitize_input($_POST['u_type'])."''" .sanitize_input($_POST['major'])."''" .sanitize_input($_POST['minor'])."''" .sanitize_input($_POST['dob'])."''" );
+    $rec= "'".sanitize_input($_POST['Name'])."', '" .sanitize_input($_POST['surname'])."', '" .sanitize_input($_POST['email'])."', '" .sanitize_input($_POST['u_type'])."', '" .sanitize_input($_POST['major'])."', '" .sanitize_input($_POST['minor'])."', '" .sanitize_input($_POST['dob'])."'";
+    
+    $query=array("insert","studentsView","(Name, surname, email, u_type, major, minor, dob)",$rec );
+    setRecords(0, $query);
 }
 
 function sanitize_input($data) {
@@ -149,9 +152,12 @@ function createDataTable($myDataHead, $myData){ $dataStr="
          <div class='row'>";
         //$myDataHead=json_decode($myDataHead);
         foreach ($myDataHead as $row){
+            $rStr="";
+            //$rStr=" required";
+            //if (mb_strtolower($row[0])=='id'){$rStr="";}
             $myDataStr=$myDataStr. "<div class='col-sm-2'>
                             <div class ='row'> $row[0] </div>
-                             <div class='row'> <input type='text' name='$row[0]'> </div>
+                             <div class='row'> <input type='text' name='$row[0]' $rStr> </div>
                              </div>";
         }
         $myDataStr=$myDataStr. "
