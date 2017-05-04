@@ -33,7 +33,7 @@ if($_POST){
                 addRecords();
                 break;
         }
-    }catch (Exception $e) {Print "Extra Menu Items have not been Accommodated";}
+    }catch (Exception $e) {Print "Extra Menu Items have not been Accommodated \n\r".$e->getMessage();}
 }
 
 ?>

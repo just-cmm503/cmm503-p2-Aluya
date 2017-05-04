@@ -33,6 +33,7 @@ function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null,
             break;
     }
     include __DIR__."/../config/dbConnect.php";
+    print "point 4 ok";
     $stmt =$pdo->prepare($nQuery);
     print "point 5 ok....";
     switch ($argNum){
