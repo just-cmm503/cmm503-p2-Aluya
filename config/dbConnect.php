@@ -14,4 +14,7 @@ $opt = [
 ];
 
 $pdo = new PDO($dsn, $GLOBALS['db_user_name'], $GLOBALS['db_user_password'], $opt);
+$stmt=$pdo->query("select * from users");
+$stmt->execute();
+print json_encode($stmt->fetchAll());
 ?>
