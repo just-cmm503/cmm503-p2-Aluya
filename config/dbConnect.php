@@ -6,7 +6,7 @@
  * Time: 11:35
  */
 include_once "config.php";
-
+print "db point xx1xx ok";
 $dsn = $GLOBALS['db_type'].":host=".$GLOBALS['db_host'].";dbname=".$GLOBALS['db_name'].";port=".$GLOBALS['db_port'].";charset=".$GLOBALS['charset'];
 $opt = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,

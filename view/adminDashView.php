@@ -31,6 +31,7 @@ if($_POST){
                 break;
             case "add records":
                 addRecords();
+                break;
         }
     }catch (Exception $e) {Print "Extra Menu Items have not been Accommodated";}
 }
