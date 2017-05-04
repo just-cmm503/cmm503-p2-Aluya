@@ -76,8 +76,6 @@ if($_POST){
 </body>
 </html>
 
-
-
 <?php
 
 
@@ -85,6 +83,7 @@ function viewFunctionOne(){ //viewCreatGroup
     print "hello";
 }
 function viewFunctionTwo(){ //viewEnrollStudents
+    print "point 1 ok ..";
     $myDataHead =enrollStudentsCtl(0);
     $myData=enrollStudentsCtl(1);
     $GLOBALS['viewTop']=createDataInputStrip($myDataHead);

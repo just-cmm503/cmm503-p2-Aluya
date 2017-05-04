@@ -9,6 +9,7 @@
 
 function enrollStudentsMdl($choice=null){
     $enrolledStudents=null;
+    print "piint 3 ok ...";
     switch ($choice) {
         case 0:
             $query = array("describe", "studentsView");
@@ -24,6 +25,7 @@ function enrollStudentsMdl($choice=null){
 
 function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null, $value4=null, $value5=null){
     //require_once __DIR__."/../config/config.php";
+    print "point 4 ok ....";
     switch ($query[0]){
         case "describe":
             $nQuery=$query[0]." ".$query[1];
@@ -34,6 +36,7 @@ function getRecords($argNum=0, $query, $value1=null, $value2=null, $value3=null,
     }
     include __DIR__."/../config/dbConnect.php";
     $stmt =$pdo->prepare($nQuery);
+    print "point 5 ok....";
     switch ($argNum){
         case 0:
             $stmt->execute();
