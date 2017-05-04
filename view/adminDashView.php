@@ -81,23 +81,18 @@ if($_POST){
 
 
 function viewFunctionOne(){ //viewCreatGroup
-    print "hello";
 }
 function viewFunctionTwo(){ //viewEnrollStudents
-    print "point 1 ok ..";
     $myDataHead =enrollStudentsCtl(0);
     $myData=enrollStudentsCtl(1);
     $GLOBALS['viewTop']=createDataInputStrip($myDataHead);
     $GLOBALS['viewUnder']=createDataTable($myDataHead, $myData);
 }
 function viewFunctionThree(){ //viewViewStudents
-    print "students";
 }
 function viewFunctionFour(){ //viewViewGroups
-    print "students";
 }
 function viewFunctionFive(){ //viewGroupStudents
-    print "students";
 }
 
 function addRecords(){
