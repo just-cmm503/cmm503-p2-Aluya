@@ -8,7 +8,7 @@
 include_once "config.php";
 
 if (strpos($_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']), 'localhost') == false) {
-    $dsn = $GLOBALS['db_type'] . ":host=" . $GLOBALS['db_host'] . ";dbname=" . $GLOBALS['db_name'] .  ";charset=" . $GLOBALS['charset'];
+    $dsn = $GLOBALS['db_type'] . ":host=" . $GLOBALS['db_host'] . ";dbname=" . $GLOBALS['db_name'] . ";port=" . $GLOBALS['db_port'] . ";charset=" . $GLOBALS['charset'];
     
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -35,7 +35,7 @@ if (strpos($_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']), 'localhost')
         $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
         //echo $connectstr_dbpassword." g4 <br> \r\n";;
     }
-    $dsn = $GLOBALS['db_type'] . ":host=" . $connectstr_dbhost . ";dbname=" . $connectstr_dbname . ";port=" . $GLOBALS['db_port'] . ";charset=" . $GLOBALS['charset'];
+    $dsn = $GLOBALS['db_type'] . ":host=" . $connectstr_dbhost . ";dbname=" . $connectstr_dbname . ";charset=" . $GLOBALS['charset'];
     
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
