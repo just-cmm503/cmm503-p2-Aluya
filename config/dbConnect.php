@@ -7,14 +7,45 @@
  */
 include_once "config.php";
 
-$dsn = $GLOBALS['db_type'].":host=".$GLOBALS['db_host'].";dbname=".$GLOBALS['db_name'].";port=".$GLOBALS['db_port'].";charset=".$GLOBALS['charset'];
-$opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+if (strpos($_SERVER['HTTP_REFERER'], 'localhost') !== false) {
+    $dsn = $GLOBALS['db_type'] . ":host=" . $GLOBALS['db_host'] . ";dbname=" . $GLOBALS['db_name'] . ";port=" . $GLOBALS['db_port'] . ";charset=" . $GLOBALS['charset'];
+    
+    $opt = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    
+    $pdo = new PDO($dsn, $GLOBALS['db_user_name'], $GLOBALS['db_user_password'], $opt);
+    
+}else{
+    $connectstr_dbhost = '';//$host;
+    $connectstr_dbname = '';//$dbName;
+    $connectstr_dbusername = '';//$uname;
+    $connectstr_dbpassword = '';//$pw;
+    foreach ($_SERVER as $key => $value) {
+        if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+            continue;
+        }
+        $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+        //echo $connectstr_dbhost." g1 <br> \r\n";
+        $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
+        //echo $connectstr_dbname." g2 <br> \r\n";;
+        $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+        //echo $connectstr_dbusername." g3 <br> \r\n";;
+        $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+        //echo $connectstr_dbpassword." g4 <br> \r\n";;
+    }
+    $dsn = $GLOBALS['db_type'] . ":host=" . $connectstr_dbhost . ";dbname=" . $connectstr_dbname . ";port=" . $GLOBALS['db_port'] . ";charset=" . $GLOBALS['charset'];
+    
+    $opt = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    
+    $pdo = new PDO($dsn, $connectstr_dbusername, $connectstr_dbpassword, $opt);
+}
 
-$pdo = new PDO($dsn, $GLOBALS['db_user_name'], $GLOBALS['db_user_password'], $opt);
-$stmt=$pdo->query("select * from users");
-$stmt->execute();
-print json_encode($stmt->fetchAll());
+//$stmt=$pdo->query("select * from users");
+//$stmt->execute();
+//print json_encode($stmt->fetchAll());
 ?>
