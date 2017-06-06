@@ -29,13 +29,13 @@ if (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false) {
             continue;
         }
         $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
-        echo $connectstr_dbhost." g1 <br> \r\n";
+        //echo $connectstr_dbhost." g1 <br> \r\n";
         $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
-        echo $connectstr_dbname." g2 <br> \r\n";;
+        //echo $connectstr_dbname." g2 <br> \r\n";;
         $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
-        echo $connectstr_dbusername." g3 <br> \r\n";;
+        //echo $connectstr_dbusername." g3 <br> \r\n";;
         $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
-        echo $connectstr_dbpassword." g4 <br> \r\n";;
+        //echo $connectstr_dbpassword." g4 <br> \r\n";;
     }
     $host_a_port = explode(":", $connectstr_dbhost);
     $dsn = $GLOBALS['db_type'] . ":host=" . $host_a_port[0] . ";dbname=" . $connectstr_dbname . ";port=" . $host_a_port[1] . ";charset=" . $GLOBALS['charset'];
