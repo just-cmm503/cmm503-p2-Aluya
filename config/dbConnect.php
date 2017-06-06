@@ -10,6 +10,8 @@ include_once "config.php";
 if (strpos($_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']), 'localhost') == false) {
     $dsn = $GLOBALS['db_type'] . ":host=" . $GLOBALS['db_host'] . ";dbname=" . $GLOBALS['db_name'] . ";port=" . $GLOBALS['db_port'] . ";charset=" . $GLOBALS['charset'];
     echo "am on local host  <br> \r\n";
+    print json_encode($_SERVER);
+    
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES   => false,
