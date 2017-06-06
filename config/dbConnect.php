@@ -37,7 +37,8 @@ if (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false) {
         $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
         echo $connectstr_dbpassword." g4 <br> \r\n";;
     }
-    $dsn = $GLOBALS['db_type'] . ":host=" . $connectstr_dbhost . ";dbname=" . $connectstr_dbname . ";charset=" . $GLOBALS['charset'];
+    $host_a_port = explode(":", $connectstr_dbhost);
+    $dsn = $GLOBALS['db_type'] . ":host=" . $host_a_port[0] . ";dbname=" . $connectstr_dbname . ";port=" . $host_a_port[1] . ";charset=" . $GLOBALS['charset'];
     
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
